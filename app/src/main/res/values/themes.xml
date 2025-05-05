@@ -1,0 +1,6 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 밝은 테마 (Light Mode) -->
+    <style name="Theme.HSU_lendIt" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 필요한 색상이나 스타일 설정이 있으면 여기에 추가 -->
+    </style>
+</resources>
