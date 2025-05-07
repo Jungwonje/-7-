@@ -1,0 +1,296 @@
+<html>
+<head>
+<title>LibrariesForLibs.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #5f826b; font-style: italic;}
+.s4 { color: #67a37c; font-style: italic;}
+.s5 { color: #68a67e; font-style: italic;}
+.s6 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+LibrariesForLibs.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">accessors</span><span class="s2">.</span><span class="s1">dm</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">NonNullApi</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">artifacts</span><span class="s2">.</span><span class="s1">MinimalExternalModuleDependency</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">plugin</span><span class="s2">.</span><span class="s1">use</span><span class="s2">.</span><span class="s1">PluginDependency</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">artifacts</span><span class="s2">.</span><span class="s1">ExternalModuleDependencyBundle</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">artifacts</span><span class="s2">.</span><span class="s1">MutableVersionConstraint</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">provider</span><span class="s2">.</span><span class="s1">Provider</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">ObjectFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">provider</span><span class="s2">.</span><span class="s1">ProviderFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">internal</span><span class="s2">.</span><span class="s1">catalog</span><span class="s2">.</span><span class="s1">AbstractExternalDependencyFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">internal</span><span class="s2">.</span><span class="s1">catalog</span><span class="s2">.</span><span class="s1">DefaultVersionCatalog</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Map</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">internal</span><span class="s2">.</span><span class="s1">attributes</span><span class="s2">.</span><span class="s1">ImmutableAttributesFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">gradle</span><span class="s2">.</span><span class="s1">api</span><span class="s2">.</span><span class="s1">internal</span><span class="s2">.</span><span class="s1">artifacts</span><span class="s2">.</span><span class="s1">dsl</span><span class="s2">.</span><span class="s1">CapabilityNotationParser</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">inject</span><span class="s2">.</span><span class="s1">Inject</span><span class="s2">;</span>
+
+<span class="s3">/**</span>
+ <span class="s3">* A catalog of dependencies accessible via the {</span><span class="s4">@code </span><span class="s3">libs} extension.</span>
+ <span class="s3">*/</span>
+<span class="s1">@NonNullApi</span>
+<span class="s0">public class </span><span class="s1">LibrariesForLibs </span><span class="s0">extends </span><span class="s1">AbstractExternalDependencyFactory </span><span class="s2">{</span>
+
+    <span class="s0">private final </span><span class="s1">AbstractExternalDependencyFactory owner </span><span class="s2">= </span><span class="s0">this</span><span class="s2">;</span>
+    <span class="s0">private final </span><span class="s1">EspressoLibraryAccessors laccForEspressoLibraryAccessors </span><span class="s2">= </span><span class="s0">new </span><span class="s1">EspressoLibraryAccessors</span><span class="s2">(</span><span class="s1">owner</span><span class="s2">);</span>
+    <span class="s0">private final </span><span class="s1">ExtLibraryAccessors laccForExtLibraryAccessors </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ExtLibraryAccessors</span><span class="s2">(</span><span class="s1">owner</span><span class="s2">);</span>
+    <span class="s0">private final </span><span class="s1">VersionAccessors vaccForVersionAccessors </span><span class="s2">= </span><span class="s0">new </span><span class="s1">VersionAccessors</span><span class="s2">(</span><span class="s1">providers</span><span class="s2">, </span><span class="s1">config</span><span class="s2">);</span>
+    <span class="s0">private final </span><span class="s1">BundleAccessors baccForBundleAccessors </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BundleAccessors</span><span class="s2">(</span><span class="s1">objects</span><span class="s2">, </span><span class="s1">providers</span><span class="s2">, </span><span class="s1">config</span><span class="s2">, </span><span class="s1">attributesFactory</span><span class="s2">, </span><span class="s1">capabilityNotationParser</span><span class="s2">);</span>
+    <span class="s0">private final </span><span class="s1">PluginAccessors paccForPluginAccessors </span><span class="s2">= </span><span class="s0">new </span><span class="s1">PluginAccessors</span><span class="s2">(</span><span class="s1">providers</span><span class="s2">, </span><span class="s1">config</span><span class="s2">);</span>
+
+    <span class="s1">@Inject</span>
+    <span class="s0">public </span><span class="s1">LibrariesForLibs</span><span class="s2">(</span><span class="s1">DefaultVersionCatalog config</span><span class="s2">, </span><span class="s1">ProviderFactory providers</span><span class="s2">, </span><span class="s1">ObjectFactory objects</span><span class="s2">, </span><span class="s1">ImmutableAttributesFactory attributesFactory</span><span class="s2">, </span><span class="s1">CapabilityNotationParser capabilityNotationParser</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">(</span><span class="s1">config</span><span class="s2">, </span><span class="s1">providers</span><span class="s2">, </span><span class="s1">objects</span><span class="s2">, </span><span class="s1">attributesFactory</span><span class="s2">, </span><span class="s1">capabilityNotationParser</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Dependency provider for </span><span class="s5">&lt;b&gt;</span><span class="s3">activity</span><span class="s5">&lt;/b&gt; </span><span class="s3">with </span><span class="s5">&lt;b&gt;</span><span class="s3">androidx.activity:activity</span><span class="s5">&lt;/b&gt; </span><span class="s3">coordinates and</span>
+     <span class="s3">* with version reference </span><span class="s5">&lt;b&gt;</span><span class="s3">activity</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+     <span class="s3">* This dependency was declared in catalog libs.versions.toml</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">MinimalExternalModuleDependency</span><span class="s2">&gt; </span><span class="s1">getActivity</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">create</span><span class="s2">(</span><span class="s6">&quot;activity&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Dependency provider for </span><span class="s5">&lt;b&gt;</span><span class="s3">appcompat</span><span class="s5">&lt;/b&gt; </span><span class="s3">with </span><span class="s5">&lt;b&gt;</span><span class="s3">androidx.appcompat:appcompat</span><span class="s5">&lt;/b&gt; </span><span class="s3">coordinates and</span>
+     <span class="s3">* with version reference </span><span class="s5">&lt;b&gt;</span><span class="s3">appcompat</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+     <span class="s3">* This dependency was declared in catalog libs.versions.toml</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">MinimalExternalModuleDependency</span><span class="s2">&gt; </span><span class="s1">getAppcompat</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">create</span><span class="s2">(</span><span class="s6">&quot;appcompat&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Dependency provider for </span><span class="s5">&lt;b&gt;</span><span class="s3">constraintlayout</span><span class="s5">&lt;/b&gt; </span><span class="s3">with </span><span class="s5">&lt;b&gt;</span><span class="s3">androidx.constraintlayout:constraintlayout</span><span class="s5">&lt;/b&gt; </span><span class="s3">coordinates and</span>
+     <span class="s3">* with version reference </span><span class="s5">&lt;b&gt;</span><span class="s3">constraintlayout</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+     <span class="s3">* This dependency was declared in catalog libs.versions.toml</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">MinimalExternalModuleDependency</span><span class="s2">&gt; </span><span class="s1">getConstraintlayout</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">create</span><span class="s2">(</span><span class="s6">&quot;constraintlayout&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Dependency provider for </span><span class="s5">&lt;b&gt;</span><span class="s3">junit</span><span class="s5">&lt;/b&gt; </span><span class="s3">with </span><span class="s5">&lt;b&gt;</span><span class="s3">junit:junit</span><span class="s5">&lt;/b&gt; </span><span class="s3">coordinates and</span>
+     <span class="s3">* with version reference </span><span class="s5">&lt;b&gt;</span><span class="s3">junit</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+     <span class="s3">* This dependency was declared in catalog libs.versions.toml</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">MinimalExternalModuleDependency</span><span class="s2">&gt; </span><span class="s1">getJunit</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">create</span><span class="s2">(</span><span class="s6">&quot;junit&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Dependency provider for </span><span class="s5">&lt;b&gt;</span><span class="s3">material</span><span class="s5">&lt;/b&gt; </span><span class="s3">with </span><span class="s5">&lt;b&gt;</span><span class="s3">com.google.android.material:material</span><span class="s5">&lt;/b&gt; </span><span class="s3">coordinates and</span>
+     <span class="s3">* with version reference </span><span class="s5">&lt;b&gt;</span><span class="s3">material</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+     <span class="s3">* This dependency was declared in catalog libs.versions.toml</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">MinimalExternalModuleDependency</span><span class="s2">&gt; </span><span class="s1">getMaterial</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">create</span><span class="s2">(</span><span class="s6">&quot;material&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Group of libraries at </span><span class="s5">&lt;b&gt;</span><span class="s3">espresso</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">EspressoLibraryAccessors getEspresso</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">laccForEspressoLibraryAccessors</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Group of libraries at </span><span class="s5">&lt;b&gt;</span><span class="s3">ext</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">ExtLibraryAccessors getExt</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">laccForExtLibraryAccessors</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Group of versions at </span><span class="s5">&lt;b&gt;</span><span class="s3">versions</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">VersionAccessors getVersions</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">vaccForVersionAccessors</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Group of bundles at </span><span class="s5">&lt;b&gt;</span><span class="s3">bundles</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">BundleAccessors getBundles</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">baccForBundleAccessors</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Group of plugins at </span><span class="s5">&lt;b&gt;</span><span class="s3">plugins</span><span class="s5">&lt;/b&gt;</span>
+     <span class="s3">*/</span>
+    <span class="s0">public </span><span class="s1">PluginAccessors getPlugins</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">paccForPluginAccessors</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static class </span><span class="s1">EspressoLibraryAccessors </span><span class="s0">extends </span><span class="s1">SubDependencyFactory </span><span class="s2">{</span>
+
+        <span class="s0">public </span><span class="s1">EspressoLibraryAccessors</span><span class="s2">(</span><span class="s1">AbstractExternalDependencyFactory owner</span><span class="s2">) { </span><span class="s0">super</span><span class="s2">(</span><span class="s1">owner</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Dependency provider for </span><span class="s5">&lt;b&gt;</span><span class="s3">core</span><span class="s5">&lt;/b&gt; </span><span class="s3">with </span><span class="s5">&lt;b&gt;</span><span class="s3">androidx.test.espresso:espresso-core</span><span class="s5">&lt;/b&gt; </span><span class="s3">coordinates and</span>
+         <span class="s3">* with version reference </span><span class="s5">&lt;b&gt;</span><span class="s3">espressoCore</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This dependency was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">MinimalExternalModuleDependency</span><span class="s2">&gt; </span><span class="s1">getCore</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">create</span><span class="s2">(</span><span class="s6">&quot;espresso.core&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+    <span class="s2">}</span>
+
+    <span class="s0">public static class </span><span class="s1">ExtLibraryAccessors </span><span class="s0">extends </span><span class="s1">SubDependencyFactory </span><span class="s2">{</span>
+
+        <span class="s0">public </span><span class="s1">ExtLibraryAccessors</span><span class="s2">(</span><span class="s1">AbstractExternalDependencyFactory owner</span><span class="s2">) { </span><span class="s0">super</span><span class="s2">(</span><span class="s1">owner</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Dependency provider for </span><span class="s5">&lt;b&gt;</span><span class="s3">junit</span><span class="s5">&lt;/b&gt; </span><span class="s3">with </span><span class="s5">&lt;b&gt;</span><span class="s3">androidx.test.ext:junit</span><span class="s5">&lt;/b&gt; </span><span class="s3">coordinates and</span>
+         <span class="s3">* with version reference </span><span class="s5">&lt;b&gt;</span><span class="s3">junitVersion</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This dependency was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">MinimalExternalModuleDependency</span><span class="s2">&gt; </span><span class="s1">getJunit</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">create</span><span class="s2">(</span><span class="s6">&quot;ext.junit&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+    <span class="s2">}</span>
+
+    <span class="s0">public static class </span><span class="s1">VersionAccessors </span><span class="s0">extends </span><span class="s1">VersionFactory  </span><span class="s2">{</span>
+
+        <span class="s0">public </span><span class="s1">VersionAccessors</span><span class="s2">(</span><span class="s1">ProviderFactory providers</span><span class="s2">, </span><span class="s1">DefaultVersionCatalog config</span><span class="s2">) { </span><span class="s0">super</span><span class="s2">(</span><span class="s1">providers</span><span class="s2">, </span><span class="s1">config</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Version alias </span><span class="s5">&lt;b&gt;</span><span class="s3">activity</span><span class="s5">&lt;/b&gt; </span><span class="s3">with value </span><span class="s5">&lt;b&gt;</span><span class="s3">1.10.1</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* If the version is a rich version and cannot be represented as a</span>
+         <span class="s3">* single version string, an empty string is returned.</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This version was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getActivity</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">getVersion</span><span class="s2">(</span><span class="s6">&quot;activity&quot;</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Version alias </span><span class="s5">&lt;b&gt;</span><span class="s3">agp</span><span class="s5">&lt;/b&gt; </span><span class="s3">with value </span><span class="s5">&lt;b&gt;</span><span class="s3">8.8.0</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* If the version is a rich version and cannot be represented as a</span>
+         <span class="s3">* single version string, an empty string is returned.</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This version was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getAgp</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">getVersion</span><span class="s2">(</span><span class="s6">&quot;agp&quot;</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Version alias </span><span class="s5">&lt;b&gt;</span><span class="s3">appcompat</span><span class="s5">&lt;/b&gt; </span><span class="s3">with value </span><span class="s5">&lt;b&gt;</span><span class="s3">1.7.0</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* If the version is a rich version and cannot be represented as a</span>
+         <span class="s3">* single version string, an empty string is returned.</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This version was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getAppcompat</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">getVersion</span><span class="s2">(</span><span class="s6">&quot;appcompat&quot;</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Version alias </span><span class="s5">&lt;b&gt;</span><span class="s3">constraintlayout</span><span class="s5">&lt;/b&gt; </span><span class="s3">with value </span><span class="s5">&lt;b&gt;</span><span class="s3">2.2.1</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* If the version is a rich version and cannot be represented as a</span>
+         <span class="s3">* single version string, an empty string is returned.</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This version was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getConstraintlayout</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">getVersion</span><span class="s2">(</span><span class="s6">&quot;constraintlayout&quot;</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Version alias </span><span class="s5">&lt;b&gt;</span><span class="s3">espressoCore</span><span class="s5">&lt;/b&gt; </span><span class="s3">with value </span><span class="s5">&lt;b&gt;</span><span class="s3">3.6.1</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* If the version is a rich version and cannot be represented as a</span>
+         <span class="s3">* single version string, an empty string is returned.</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This version was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getEspressoCore</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">getVersion</span><span class="s2">(</span><span class="s6">&quot;espressoCore&quot;</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Version alias </span><span class="s5">&lt;b&gt;</span><span class="s3">junit</span><span class="s5">&lt;/b&gt; </span><span class="s3">with value </span><span class="s5">&lt;b&gt;</span><span class="s3">4.13.2</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* If the version is a rich version and cannot be represented as a</span>
+         <span class="s3">* single version string, an empty string is returned.</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This version was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getJunit</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">getVersion</span><span class="s2">(</span><span class="s6">&quot;junit&quot;</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Version alias </span><span class="s5">&lt;b&gt;</span><span class="s3">junitVersion</span><span class="s5">&lt;/b&gt; </span><span class="s3">with value </span><span class="s5">&lt;b&gt;</span><span class="s3">1.2.1</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* If the version is a rich version and cannot be represented as a</span>
+         <span class="s3">* single version string, an empty string is returned.</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This version was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getJunitVersion</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">getVersion</span><span class="s2">(</span><span class="s6">&quot;junitVersion&quot;</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Version alias </span><span class="s5">&lt;b&gt;</span><span class="s3">material</span><span class="s5">&lt;/b&gt; </span><span class="s3">with value </span><span class="s5">&lt;b&gt;</span><span class="s3">1.12.0</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* If the version is a rich version and cannot be represented as a</span>
+         <span class="s3">* single version string, an empty string is returned.</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This version was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getMaterial</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">getVersion</span><span class="s2">(</span><span class="s6">&quot;material&quot;</span><span class="s2">); }</span>
+
+    <span class="s2">}</span>
+
+    <span class="s0">public static class </span><span class="s1">BundleAccessors </span><span class="s0">extends </span><span class="s1">BundleFactory </span><span class="s2">{</span>
+
+        <span class="s0">public </span><span class="s1">BundleAccessors</span><span class="s2">(</span><span class="s1">ObjectFactory objects</span><span class="s2">, </span><span class="s1">ProviderFactory providers</span><span class="s2">, </span><span class="s1">DefaultVersionCatalog config</span><span class="s2">, </span><span class="s1">ImmutableAttributesFactory attributesFactory</span><span class="s2">, </span><span class="s1">CapabilityNotationParser capabilityNotationParser</span><span class="s2">) { </span><span class="s0">super</span><span class="s2">(</span><span class="s1">objects</span><span class="s2">, </span><span class="s1">providers</span><span class="s2">, </span><span class="s1">config</span><span class="s2">, </span><span class="s1">attributesFactory</span><span class="s2">, </span><span class="s1">capabilityNotationParser</span><span class="s2">); }</span>
+
+    <span class="s2">}</span>
+
+    <span class="s0">public static class </span><span class="s1">PluginAccessors </span><span class="s0">extends </span><span class="s1">PluginFactory </span><span class="s2">{</span>
+        <span class="s0">private final </span><span class="s1">AndroidPluginAccessors paccForAndroidPluginAccessors </span><span class="s2">= </span><span class="s0">new </span><span class="s1">AndroidPluginAccessors</span><span class="s2">(</span><span class="s1">providers</span><span class="s2">, </span><span class="s1">config</span><span class="s2">);</span>
+
+        <span class="s0">public </span><span class="s1">PluginAccessors</span><span class="s2">(</span><span class="s1">ProviderFactory providers</span><span class="s2">, </span><span class="s1">DefaultVersionCatalog config</span><span class="s2">) { </span><span class="s0">super</span><span class="s2">(</span><span class="s1">providers</span><span class="s2">, </span><span class="s1">config</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Group of plugins at </span><span class="s5">&lt;b&gt;</span><span class="s3">plugins.android</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">AndroidPluginAccessors getAndroid</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">paccForAndroidPluginAccessors</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+    <span class="s2">}</span>
+
+    <span class="s0">public static class </span><span class="s1">AndroidPluginAccessors </span><span class="s0">extends </span><span class="s1">PluginFactory </span><span class="s2">{</span>
+
+        <span class="s0">public </span><span class="s1">AndroidPluginAccessors</span><span class="s2">(</span><span class="s1">ProviderFactory providers</span><span class="s2">, </span><span class="s1">DefaultVersionCatalog config</span><span class="s2">) { </span><span class="s0">super</span><span class="s2">(</span><span class="s1">providers</span><span class="s2">, </span><span class="s1">config</span><span class="s2">); }</span>
+
+        <span class="s3">/**</span>
+         <span class="s3">* Plugin provider for </span><span class="s5">&lt;b&gt;</span><span class="s3">android.application</span><span class="s5">&lt;/b&gt; </span><span class="s3">with plugin id </span><span class="s5">&lt;b&gt;</span><span class="s3">com.android.application</span><span class="s5">&lt;/b&gt; </span><span class="s3">and</span>
+         <span class="s3">* with version reference </span><span class="s5">&lt;b&gt;</span><span class="s3">agp</span><span class="s5">&lt;/b&gt;</span>
+         <span class="s3">* </span><span class="s5">&lt;p&gt;</span>
+         <span class="s3">* This plugin was declared in catalog libs.versions.toml</span>
+         <span class="s3">*/</span>
+        <span class="s0">public </span><span class="s1">Provider</span><span class="s2">&lt;</span><span class="s1">PluginDependency</span><span class="s2">&gt; </span><span class="s1">getApplication</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">createPlugin</span><span class="s2">(</span><span class="s6">&quot;android.application&quot;</span><span class="s2">); }</span>
+
+    <span class="s2">}</span>
+
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

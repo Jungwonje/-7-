@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <!-- 상단 바 (뒤로가기, 마이페이지, 로고) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp"
+        android:weightSum="3">
+
+        <!-- 뒤로가기 버튼 -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="←"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="#000000"
+            android:gravity="start" />
+
+        <!-- 물품 대여 텍스트 -->
+        <TextView
+            android:id="@+id/tvRent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="물품 대여"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="#000000" />
+
+        <!-- 로고 이미지 -->
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/hansung_logo"
+            android:scaleType="fitEnd"
+            android:contentDescription="logo" />
+    </LinearLayout>
+
+    <!-- 대여한 물품 정보 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#F5F5F5"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- 충전기 이미지 -->
+
+        <!-- 대여 일자 -->
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="충전기 이미지"
+            android:src="@drawable/charger" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대여 일자: "
+                android:textSize="20sp"
+                android:textColor="#333333"/>
+            <EditText
+                android:id="@+id/txtRentalDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0000.00.00"
+                android:textSize="20sp"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+        <!-- 대여 시간 (또는 기간) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대여 기간: "
+                android:textSize="20sp"
+                android:textColor="#333333"/>
+            <TextView
+                android:id="@+id/txtRentalDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7일"
+                android:textSize="20sp"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+        <!-- 수량 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수량: "
+                android:textSize="20sp"
+                android:textColor="#333333"/>
+            <EditText
+                android:id="@+id/txtItemQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00개"
+                android:textSize="20sp"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+        <!-- 대여 버튼 -->
+        <Button
+            android:id="@+id/btnConfirmRental"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="대여하기"
+            android:textSize="20dp"
+            android:backgroundTint="#03A9F4"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</LinearLayout>
