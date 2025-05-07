@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 배경 이미지 (불투명도 낮게) -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/uu"
+        android:scaleType="centerCrop"
+        android:alpha="0.5" />
+
+
+    <!-- 내용 레이아웃 -->
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
+
+        <!-- 로고 + 제목 -->
+
+        <!-- 입력 필드들 -->
+
+        <LinearLayout
+            android:layout_width="353dp"
+            android:layout_height="204dp"
+            android:layout_marginTop="-150dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="141dp"
+                android:layout_height="156dp"
+                android:layout_marginEnd="12dp"
+                android:contentDescription="@string/logo_description"
+                android:src="@drawable/hansung_logo_transparent" />
+
+            <TextView
+                android:layout_width="188dp"
+                android:layout_height="92dp"
+                android:text="한성대학교\n물품대여 서비스"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etStudentId"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="학번"
+            android:textColorHint="#000000"
+            android:inputType="number"
+            android:layout_marginTop="24dp"
+            android:autofillHints="username" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="비밀번호"
+            android:textColorHint="#000000"
+            android:inputType="text"
+            android:layout_marginTop="12dp"
+            android:autofillHints="password" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="전화번호"
+            android:textColorHint="#000000"
+            android:inputType="phone"
+            android:layout_marginTop="12dp"
+            android:autofillHints="phone" />
+
+
+        <!-- 다음 버튼 -->
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/btn_next"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</FrameLayout>

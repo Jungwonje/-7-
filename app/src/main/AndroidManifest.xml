@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.hsu_lendit">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HSU_lendIt">
+
+        <!-- MainActivity: 앱 시작화면 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- SecondActivity: 물품 대여 화면 -->
+        <activity android:name=".SecondActivity" />
+
+        <!-- MyPageActivity: 마이페이지 화면 -->
+        <activity android:name=".MyPageActivity" />
+
+        <!-- RentChargerActivity: 충전기 대여 화면 -->
+        <activity android:name=".RentChargerActivity" />
+
+        <!-- RentEarphoneActivity: 이어폰 대여 화면 -->
+        <activity android:name=".RentEarphoneActivity" />
+
+        <!-- RentLaptopActivity: 노트북 대여 화면 -->
+        <activity android:name=".RentLaptopActivity" />
+
+        <!-- RentMouseActivity: 마우스 대여 화면 -->
+        <activity android:name=".RentMouseActivity" />
+
+        <!-- RentScissorsActivity: 가위 대여 화면 -->
+        <activity android:name=".RentScissorsActivity" />
+
+        <!-- RentTabletActivity: 태블릿 대여 화면 -->
+        <activity android:name=".RentTabletActivity" />
+
+        <!-- RentUmbrellaActivity: 우산 대여 화면 -->
+        <activity android:name=".RentUmbrellaActivity" />
+
+        <!-- OutOfStockActivity: 재고 부족 화면 -->
+        <activity android:name=".OutOfStockActivity" />
+
+
+
+
+    </application>
+</manifest>

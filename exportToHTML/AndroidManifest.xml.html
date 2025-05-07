@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>AndroidManifest.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d5b778;}
+.s1 { color: #bcbec4;}
+.s2 { color: #6aab73;}
+.s3 { color: #bcbec4;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AndroidManifest.xml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?</span><span class="s1">xml version</span><span class="s2">=&quot;1.0&quot; </span><span class="s1">encoding</span><span class="s2">=&quot;utf-8&quot;</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;manifest </span><span class="s1">xmlns:android</span><span class="s2">=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="s1">package</span><span class="s2">=&quot;com.example.hsu_lendit&quot;</span>
+    <span class="s1">android:versionCode</span><span class="s2">=&quot;1&quot;</span>
+    <span class="s1">android:versionName</span><span class="s2">=&quot;1.0&quot; </span><span class="s0">&gt;</span>
+
+    <span class="s0">&lt;uses-sdk</span>
+        <span class="s1">android:minSdkVersion</span><span class="s2">=&quot;24&quot;</span>
+        <span class="s1">android:targetSdkVersion</span><span class="s2">=&quot;35&quot; </span><span class="s0">/&gt;</span>
+
+    <span class="s0">&lt;permission</span>
+        <span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION&quot;</span>
+        <span class="s1">android:protectionLevel</span><span class="s2">=&quot;signature&quot; </span><span class="s0">/&gt;</span>
+
+    <span class="s0">&lt;uses-permission </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION&quot; </span><span class="s0">/&gt;</span>
+
+    <span class="s0">&lt;application</span>
+        <span class="s1">android:allowBackup</span><span class="s2">=&quot;true&quot;</span>
+        <span class="s1">android:appComponentFactory</span><span class="s2">=&quot;androidx.core.app.CoreComponentFactory&quot;</span>
+        <span class="s1">android:debuggable</span><span class="s2">=&quot;true&quot;</span>
+        <span class="s1">android:extractNativeLibs</span><span class="s2">=&quot;false&quot;</span>
+        <span class="s1">android:icon</span><span class="s2">=&quot;@mipmap/ic_launcher&quot;</span>
+        <span class="s1">android:label</span><span class="s2">=&quot;@string/app_name&quot;</span>
+        <span class="s1">android:roundIcon</span><span class="s2">=&quot;@mipmap/ic_launcher_round&quot;</span>
+        <span class="s1">android:supportsRtl</span><span class="s2">=&quot;true&quot;</span>
+        <span class="s1">android:testOnly</span><span class="s2">=&quot;true&quot;</span>
+        <span class="s1">android:theme</span><span class="s2">=&quot;@style/Theme.HSU_lendIt&quot; </span><span class="s0">&gt;</span>
+
+        <span class="s4">&lt;!-- MainActivity: 앱 시작화면 --&gt;</span>
+        <span class="s0">&lt;activity</span>
+            <span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.MainActivity&quot;</span>
+            <span class="s1">android:exported</span><span class="s2">=&quot;true&quot; </span><span class="s0">&gt;</span>
+            <span class="s0">&lt;intent-filter&gt;</span>
+                <span class="s0">&lt;action </span><span class="s1">android:name</span><span class="s2">=&quot;android.intent.action.MAIN&quot; </span><span class="s0">/&gt;</span>
+
+                <span class="s0">&lt;category </span><span class="s1">android:name</span><span class="s2">=&quot;android.intent.category.LAUNCHER&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;/intent-filter&gt;</span>
+        <span class="s0">&lt;/activity&gt;</span>
+
+        <span class="s4">&lt;!-- SecondActivity: 물품 대여 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.SecondActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- MyPageActivity: 마이페이지 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.MyPageActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- RentChargerActivity: 충전기 대여 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.RentChargerActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- RentEarphoneActivity: 이어폰 대여 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.RentEarphoneActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- RentLaptopActivity: 노트북 대여 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.RentLaptopActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- RentMouseActivity: 마우스 대여 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.RentMouseActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- RentScissorsActivity: 가위 대여 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.RentScissorsActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- RentTabletActivity: 태블릿 대여 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.RentTabletActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- RentUmbrellaActivity: 우산 대여 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.RentUmbrellaActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s4">&lt;!-- OutOfStockActivity: 재고 부족 화면 --&gt;</span>
+        <span class="s0">&lt;activity </span><span class="s1">android:name</span><span class="s2">=&quot;com.example.hsu_lendit.OutOfStockActivity&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s0">&lt;provider</span>
+            <span class="s1">android:name</span><span class="s2">=&quot;androidx.startup.InitializationProvider&quot;</span>
+            <span class="s1">android:authorities</span><span class="s2">=&quot;com.example.hsu_lendit.androidx-startup&quot;</span>
+            <span class="s1">android:exported</span><span class="s2">=&quot;false&quot; </span><span class="s0">&gt;</span>
+            <span class="s0">&lt;meta-data</span>
+                <span class="s1">android:name</span><span class="s2">=&quot;androidx.emoji2.text.EmojiCompatInitializer&quot;</span>
+                <span class="s1">android:value</span><span class="s2">=&quot;androidx.startup&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;meta-data</span>
+                <span class="s1">android:name</span><span class="s2">=&quot;androidx.lifecycle.ProcessLifecycleInitializer&quot;</span>
+                <span class="s1">android:value</span><span class="s2">=&quot;androidx.startup&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;meta-data</span>
+                <span class="s1">android:name</span><span class="s2">=&quot;androidx.profileinstaller.ProfileInstallerInitializer&quot;</span>
+                <span class="s1">android:value</span><span class="s2">=&quot;androidx.startup&quot; </span><span class="s0">/&gt;</span>
+        <span class="s0">&lt;/provider&gt;</span>
+
+        <span class="s0">&lt;receiver</span>
+            <span class="s1">android:name</span><span class="s2">=&quot;androidx.profileinstaller.ProfileInstallReceiver&quot;</span>
+            <span class="s1">android:directBootAware</span><span class="s2">=&quot;false&quot;</span>
+            <span class="s1">android:enabled</span><span class="s2">=&quot;true&quot;</span>
+            <span class="s1">android:exported</span><span class="s2">=&quot;true&quot;</span>
+            <span class="s1">android:permission</span><span class="s2">=&quot;android.permission.DUMP&quot; </span><span class="s0">&gt;</span>
+            <span class="s0">&lt;intent-filter&gt;</span>
+                <span class="s0">&lt;action </span><span class="s1">android:name</span><span class="s2">=&quot;androidx.profileinstaller.action.INSTALL_PROFILE&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;/intent-filter&gt;</span>
+            <span class="s0">&lt;intent-filter&gt;</span>
+                <span class="s0">&lt;action </span><span class="s1">android:name</span><span class="s2">=&quot;androidx.profileinstaller.action.SKIP_FILE&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;/intent-filter&gt;</span>
+            <span class="s0">&lt;intent-filter&gt;</span>
+                <span class="s0">&lt;action </span><span class="s1">android:name</span><span class="s2">=&quot;androidx.profileinstaller.action.SAVE_PROFILE&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;/intent-filter&gt;</span>
+            <span class="s0">&lt;intent-filter&gt;</span>
+                <span class="s0">&lt;action </span><span class="s1">android:name</span><span class="s2">=&quot;androidx.profileinstaller.action.BENCHMARK_OPERATION&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;/intent-filter&gt;</span>
+        <span class="s0">&lt;/receiver&gt;</span>
+    <span class="s0">&lt;/application&gt;</span>
+
+<span class="s0">&lt;/manifest&gt;</span></pre>
+</body>
+</html>
