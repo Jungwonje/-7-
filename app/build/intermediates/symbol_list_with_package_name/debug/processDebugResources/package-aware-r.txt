@@ -3628,6 +3628,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tvEmptyState
+id tvItemId
 id tvItemName
 id tvMyPage
 id tvRemainingTime
@@ -3635,6 +3636,7 @@ id tvRentalDate
 id tvRentalQuantity
 id tvReturnDate
 id tvReturnMessage
+id tvScissorsRemaining
 id tvTotalTime
 id tvWelcome
 id unchecked

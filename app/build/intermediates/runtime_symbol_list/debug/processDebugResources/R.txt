@@ -3627,6 +3627,7 @@ int id transition_scene_layoutid_cache 0x7f0801f8
 int id transition_transform 0x7f0801f9
 int id triangle 0x7f0801fa
 int id tvEmptyState 0x7f0801fb
+int id tvItemId 0x7f08021f
 int id tvItemName 0x7f0801fc
 int id tvMyPage 0x7f0801fd
 int id tvRemainingTime 0x7f0801fe
@@ -3634,6 +3635,7 @@ int id tvRentalDate 0x7f0801ff
 int id tvRentalQuantity 0x7f080200
 int id tvReturnDate 0x7f080201
 int id tvReturnMessage 0x7f080202
+int id tvScissorsRemaining 0x7f08021e
 int id tvTotalTime 0x7f080203
 int id tvWelcome 0x7f080204
 int id unchecked 0x7f080205

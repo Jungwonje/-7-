@@ -30,8 +30,7 @@ public class RentScissorsActivity extends AppCompatActivity {
 
         // 뒤로가기 버튼 클릭 이벤트
         btnBack.setOnClickListener(v -> {
-            // 현재 액티비티 종료 (이전 화면으로 돌아감)
-            finish();
+            finish(); // 이전 화면으로 돌아감
         });
 
         // 대여일자 입력 시 반납날짜 자동 계산
@@ -78,8 +77,7 @@ public class RentScissorsActivity extends AppCompatActivity {
             Intent resultIntent = new Intent();
             resultIntent.putExtra("itemName", "가위");
             resultIntent.putExtra("rentalDate", rentalDate);
-            resultIntent.putExtra("rentalQuantity", rentalQuantityStr);
-            resultIntent.putExtra("returnDate", tvReturnDate.getText().toString().replace("반납 날짜: ", ""));
+            resultIntent.putExtra("rentalQuantity", rentalQuantityStr); // String으로 전달
             setResult(RESULT_OK, resultIntent);
             finish();
         });

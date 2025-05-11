@@ -44,6 +44,7 @@ id main
 id scrollView
 id titleText
 id tvEmptyState
+id tvItemId
 id tvItemName
 id tvMyPage
 id tvRemainingTime
@@ -51,6 +52,7 @@ id tvRentalDate
 id tvRentalQuantity
 id tvReturnDate
 id tvReturnMessage
+id tvScissorsRemaining
 id tvTotalTime
 id tvWelcome
 layout activity_main

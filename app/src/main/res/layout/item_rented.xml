@@ -2,56 +2,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:background="#F8F8F8"
+    android:layout_marginBottom="8dp">
 
-    <!-- 아이템 이름 -->
-    <TextView
-        android:id="@+id/tvItemName"
-        android:layout_width="wrap_content"
+    <!-- 물품 정보 영역 -->
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="아이템 이름"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:layout_marginBottom="4dp" />
+        android:layout_weight="2"
+        android:orientation="vertical">
 
-    <!-- 대여일자 -->
-    <TextView
-        android:id="@+id/tvRentalDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="대여일자: "
-        android:textSize="16sp"
-        android:textColor="#333333"
-        android:layout_marginBottom="4dp" />
+        <!-- 아이템 고유번호 -->
+        <TextView
+            android:id="@+id/tvItemId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이템 고유번호: A"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginBottom="4dp" />
 
-    <!-- 대여 수량 -->
-    <TextView
-        android:id="@+id/tvRentalQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="대여 수량: "
-        android:textSize="16sp"
-        android:textColor="#333333"
-        android:layout_marginBottom="4dp" />
+        <!-- 아이템 이름 -->
+        <TextView
+            android:id="@+id/tvItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이템 이름"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_marginBottom="4dp" />
 
-    <!-- 남은 대여시간 -->
-    <TextView
-        android:id="@+id/tvRemainingTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="남은 대여시간: "
-        android:textSize="16sp"
-        android:textColor="#333333"
-        android:layout_marginBottom="8dp" />
+        <!-- 대여일자 -->
+        <TextView
+            android:id="@+id/tvRentalDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="대여일자: "
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp" />
 
-    <!-- 반납 버튼 -->
+        <!-- 대여 수량 -->
+        <TextView
+            android:id="@+id/tvRentalQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="대여 수량: "
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp" />
+
+        <!-- 남은 대여시간 -->
+        <TextView
+            android:id="@+id/tvRemainingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="남은 대여시간: "
+            android:textSize="16sp"
+            android:textColor="#FF5722"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 반납 버튼 영역 -->
     <Button
         android:id="@+id/btnReturn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="반납하기"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:text="반납"
         android:textSize="16sp"
         android:backgroundTint="#03A9F4"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:layout_gravity="center" />
 </LinearLayout>

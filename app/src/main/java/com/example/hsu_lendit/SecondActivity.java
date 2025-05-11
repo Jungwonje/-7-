@@ -33,6 +33,11 @@ public class SecondActivity extends AppCompatActivity {
         // 마이페이지 버튼
         Button btnMyPage = findViewById(R.id.btnMyPage);
         btnMyPage.setOnClickListener(v -> {
+            System.out.println("Intent로 전달할 데이터 확인:");
+            System.out.println("rentedItems: " + rentedItems);
+            System.out.println("rentalDates: " + rentalDates);
+            System.out.println("rentalQuantities: " + rentalQuantities);
+
             Intent myPageIntent = new Intent(SecondActivity.this, MyPageActivity.class);
             myPageIntent.putStringArrayListExtra("itemNames", rentedItems);
             myPageIntent.putStringArrayListExtra("rentalDates", rentalDates);
@@ -90,6 +95,7 @@ public class SecondActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -97,13 +103,45 @@ public class SecondActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && data != null) {
             String itemName = data.getStringExtra("itemName");
             String rentalDate = data.getStringExtra("rentalDate");
-            String rentalQuantity = data.getStringExtra("rentalQuantity");
+            String rentalQuantityString = data.getStringExtra("rentalQuantity"); // String으로 가져옴
 
-            if (itemName != null && rentalDate != null && rentalQuantity != null) {
-                rentedItems.add(itemName);
-                rentalDates.add(rentalDate);
-                rentalQuantities.add(rentalQuantity);
+            System.out.println("onActivityResult 데이터 확인:");
+            System.out.println("itemName: " + itemName);
+            System.out.println("rentalDate: " + rentalDate);
+            System.out.println("rentalQuantity: " + rentalQuantityString);
+
+            // rentalQuantity를 String에서 int로 변환
+            int rentalQuantity = 0;
+            try {
+                rentalQuantity = Integer.parseInt(rentalQuantityString);
+            } catch (NumberFormatException e) {
+                System.out.println("rentalQuantity 변환 오류: " + e.getMessage());
             }
+
+            if (itemName != null && rentalDate != null && rentalQuantity > 0) {
+                for (int i = 0; i < rentalQuantity; i++) {
+                    String rentedItemId = rentManager.rentItem(itemName);
+                    if (rentedItemId != null) {
+                        rentedItems.add(rentedItemId); // 고유번호 추가
+                        rentalDates.add(rentalDate);
+                        rentalQuantities.add("1");
+                    } else {
+                        System.out.println("대여 실패: 재고가 부족합니다.");
+                    }
+                }
+                updateRemainingQuantity(itemName); // 남은 수량 업데이트
+            }
+        }
+    }
+
+    // 물품의 남은 수량을 업데이트하는 메서드
+    private void updateRemainingQuantity(String itemName) {
+        int remainingCount = rentManager.getItemCount(itemName);
+
+        // 예: 가위의 남은 수량 텍스트뷰 업데이트
+        if ("가위".equals(itemName)) {
+            TextView scissorsRemaining = findViewById(R.id.tvScissorsRemaining);
+            scissorsRemaining.setText("남은 수량: " + remainingCount);
         }
     }
 }
