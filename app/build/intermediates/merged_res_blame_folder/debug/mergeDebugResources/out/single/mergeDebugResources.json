@@ -56,6 +56,10 @@
         "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_earphone.xml"
     },
     {
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_item.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_item.xml"
+    },
+    {
         "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_umbrella.xml.flat",
         "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_umbrella.xml"
     },
@@ -112,6 +116,10 @@
         "source": "com.example.hsu_lendit.app-main-34:/drawable/ic_launcher_foreground.xml"
     },
     {
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_return_item.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_return_item.xml"
+    },
+    {
         "merged": "com.example.hsu_lendit.app-debug-32:/drawable_earphone.png.flat",
         "source": "com.example.hsu_lendit.app-main-34:/drawable/earphone.png"
     },
@@ -122,6 +130,10 @@
     {
         "merged": "com.example.hsu_lendit.app-debug-32:/drawable_tablet.png.flat",
         "source": "com.example.hsu_lendit.app-main-34:/drawable/tablet.png"
+    },
+    {
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_item_rented.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/item_rented.xml"
     },
     {
         "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",

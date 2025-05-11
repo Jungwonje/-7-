@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="holo_blue_dark">#303F9F</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">HSU LendIt</string>
     <string name="app_title">한성대학교 물품대여 서비스</string>

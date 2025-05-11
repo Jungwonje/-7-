@@ -16,7 +16,19 @@
         android:textColor="@android:color/white"
         android:textSize="12sp" />
 
-    <!-- 제목 텍스트 (가운데 상단) -->
+    <!-- 환영 메시지 (가운데 상단) -->
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnMyPage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="환영합니다!"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 제목 텍스트 (환영 메시지 아래) -->
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
@@ -24,7 +36,7 @@
         android:text="물품 대여 목록"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_below="@id/btnMyPage"
+        android:layout_below="@id/tvWelcome"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp" />
 
@@ -42,8 +54,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 여기에 물품 항목을 추가하세요 -->
-            <!-- 가위 -->
+            <!-- 물품 항목 (가위) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -80,17 +91,16 @@
                         android:layout_marginTop="6dp" />
                 </LinearLayout>
 
-                <!-- 대여하기 버튼 추가 -->
+                <!-- 대여하기 버튼 -->
                 <Button
                     android:id="@+id/btnRentScissors"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="대여하기"
                     android:layout_marginStart="8dp" />
-
             </LinearLayout>
 
-            <!-- 노트북 -->
+            <!-- 물품 항목 (노트북) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="97dp"
@@ -127,14 +137,13 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- 대여하기 버튼 추가 -->
+                <!-- 대여하기 버튼 -->
                 <Button
                     android:id="@+id/btnRentLaptop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="대여하기"
                     android:layout_marginStart="8dp" />
-
             </LinearLayout>
 
             <!-- 마우스 -->

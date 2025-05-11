@@ -50,64 +50,42 @@
             android:contentDescription="logo" />
     </LinearLayout>
 
-    <!-- 대여한 물품 정보 -->
-    <LinearLayout
+    <!-- 대여한 물품 정보를 동적으로 추가할 컨테이너 -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#F5F5F5"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="대여한 물품 목록이 표시됩니다.">
 
-        <!-- 노트북 이미지 -->
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/laptop"
-            android:layout_marginEnd="12dp"
-            android:contentDescription="노트북 이미지" />
-
-        <!-- 텍스트 + 버튼 수직 정렬 -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/itemContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- 빈 상태 텍스트 -->
             <TextView
+                android:id="@+id/tvEmptyState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="노트북"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#000000" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="반납일자: 2025-05-13"
-                android:textSize="14sp"
-                android:textColor="#555555"
-                android:layout_marginTop="4dp" />
-
-            <Button
-                android:id="@+id/btnReturn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="반납하기"
-                android:backgroundTint="#03A9F4"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="8dp" />
+                android:text="대여한 물품이 없습니다"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:textColor="#555555" />
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
+    <!-- 목록 보기 버튼 -->
     <Button
         android:id="@+id/btnList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="16dp"
         android:layout_gravity="center"
         android:text="목록 보기"
         android:textSize="25sp"
-        android:backgroundTint="#03A9F4"/>
+        android:backgroundTint="#03A9F4"
+        android:textColor="#FFFFFF" />
 </LinearLayout>

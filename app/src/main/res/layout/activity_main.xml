@@ -11,7 +11,6 @@
         android:scaleType="centerCrop"
         android:alpha="0.5" />
 
-
     <!-- 내용 레이아웃 -->
     <LinearLayout
         android:id="@+id/main"
@@ -22,9 +21,6 @@
         android:gravity="center">
 
         <!-- 로고 + 제목 -->
-
-        <!-- 입력 필드들 -->
-
         <LinearLayout
             android:layout_width="353dp"
             android:layout_height="204dp"
@@ -59,14 +55,13 @@
             android:autofillHints="username" />
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:hint="비밀번호"
+            android:hint="이름"
             android:textColorHint="#000000"
-            android:inputType="text"
-            android:layout_marginTop="12dp"
-            android:autofillHints="password" />
+            android:inputType="textPersonName"
+            android:layout_marginTop="12dp" />
 
         <EditText
             android:id="@+id/etPhone"
@@ -78,10 +73,9 @@
             android:layout_marginTop="12dp"
             android:autofillHints="phone" />
 
-
-        <!-- 다음 버튼 -->
+        <!-- 로그인 버튼 -->
         <Button
-            android:id="@+id/btnNext"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="@string/btn_next"

@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이템 이름"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/etRentalDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="대여일자 입력"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/tvTotalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="총 대여시간: "
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tvRemainingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="남은 대여시간: "
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnComplete"
+        android:layout_width="111dp"
+        android:layout_height="64dp"
+        android:text="완료" />
+</LinearLayout>
