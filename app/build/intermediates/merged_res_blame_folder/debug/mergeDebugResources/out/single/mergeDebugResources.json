@@ -28,6 +28,10 @@
         "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_scissors.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_scissors.xml"
+    },
+    {
         "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_item_rented.xml.flat",
         "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\item_rented.xml"
     },
@@ -52,6 +56,10 @@
         "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_scissors.xml"
     },
     {
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_item.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_item.xml"
+    },
+    {
         "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_hansung_logo_transparent.png.flat",
         "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\hansung_logo_transparent.png"
     },
@@ -66,6 +74,10 @@
     {
         "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_mouse.xml.flat",
         "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_mouse.xml"
+    },
+    {
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_my_page.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_my_page.xml"
     },
     {
         "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_my_page.xml.flat",
