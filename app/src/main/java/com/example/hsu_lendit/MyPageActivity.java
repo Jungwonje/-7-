@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MyPageActivity extends AppCompatActivity {
-    private TextView tvEmptyState; // Empty state text
+    private TextView tvEmptyState; // 빈 상태 텍스트뷰
     private RentManager rentManager; // RentManager 객체 선언
 
     @Override
@@ -32,6 +32,7 @@ public class MyPageActivity extends AppCompatActivity {
         ArrayList<String> rentalDates = intent.getStringArrayListExtra("rentalDates");
         ArrayList<String> rentalQuantities = intent.getStringArrayListExtra("rentalQuantities");
 
+        // 데이터 확인 로그
         System.out.println("MyPageActivity로 전달된 데이터 확인:");
         System.out.println("itemNames: " + itemNames);
         System.out.println("rentalDates: " + rentalDates);
@@ -39,6 +40,7 @@ public class MyPageActivity extends AppCompatActivity {
 
         if (itemNames == null || rentalDates == null || rentalQuantities == null || itemNames.isEmpty()) {
             System.out.println("데이터가 없거나 비어 있습니다.");
+            updateEmptyState(itemContainer); // 빈 상태 업데이트
             return; // 데이터가 없으면 종료
         }
 
@@ -50,7 +52,7 @@ public class MyPageActivity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
-        updateEmptyState(itemContainer);
+        updateEmptyState(itemContainer); // 빈 상태 업데이트
     }
 
     // 대여 항목 추가 메서드
@@ -69,14 +71,40 @@ public class MyPageActivity extends AppCompatActivity {
 
         Button btnReturn = itemView.findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(v -> {
-            String itemId = itemName.split(":")[1]; // 고유번호 추출
-            rentManager.returnItem(itemName.split("-")[0], itemId); // 반납
-            itemContainer.removeView(itemView); // MyPage에서 항목 제거
-            updateEmptyState(itemContainer); // 빈 상태 업데이트
+            // itemName을 안전하게 분리
+            String[] itemParts = itemName.split("-");
+            if (itemParts.length < 2) {
+                System.out.println("Error: Invalid itemName format: " + itemName);
+                return; // 잘못된 형식이면 처리 중단
+            }
+
+            String itemType = itemParts[0]; // 예: "가위"
+            String itemId = itemParts[1];  // 예: "A"
+
+            // RentManager를 통해 반납 처리
+            if (rentManager.returnItem(itemType, itemId)) { // 반납 성공 시
+                System.out.println("반납 성공: " + itemName);
+
+                // MyPage UI에서 해당 항목 제거
+                itemContainer.removeView(itemView);
+
+                // 빈 상태 업데이트
+                updateEmptyState(itemContainer);
+
+                // SecondActivity로 반납 정보를 전달
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("returnedItem", itemName);
+                resultIntent.putExtra("itemType", itemType); // 예: "가위"
+                setResult(RESULT_OK, resultIntent);
+
+                // Activity 종료
+                finish();
+            } else {
+                System.out.println("반납 실패: " + itemName);
+            }
         });
 
         itemContainer.addView(itemView);
-        updateEmptyState(itemContainer); // 빈 상태 업데이트
     }
 
     // 남은 대여 시간을 계산하는 메서드
@@ -94,6 +122,7 @@ public class MyPageActivity extends AppCompatActivity {
                 return "기간 종료";
             }
         } catch (ParseException e) {
+            System.out.println("날짜 파싱 오류: " + e.getMessage());
             e.printStackTrace();
             return "날짜 오류";
         }
@@ -101,10 +130,12 @@ public class MyPageActivity extends AppCompatActivity {
 
     // 빈 상태 텍스트뷰 업데이트
     private void updateEmptyState(LinearLayout itemContainer) {
-        if (itemContainer.getChildCount() == 0) {
-            tvEmptyState.setVisibility(View.VISIBLE); // 빈 상태 텍스트뷰 표시
+        boolean isEmpty = itemContainer.getChildCount() == 0;
+        tvEmptyState.setVisibility(isEmpty ? View.VISIBLE : View.GONE);
+        if (isEmpty) {
+            System.out.println("빈 상태 텍스트뷰 표시: 대여한 항목이 없습니다.");
         } else {
-            tvEmptyState.setVisibility(View.GONE); // 빈 상태 텍스트뷰 숨기기
+            System.out.println("빈 상태 텍스트뷰 숨김: 대여한 항목이 존재합니다.");
         }
     }
 }

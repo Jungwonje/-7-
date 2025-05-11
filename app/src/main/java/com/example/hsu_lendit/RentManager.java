@@ -44,9 +44,11 @@ public class RentManager {
             String timestamp = dateFormat.format(new Date());
             rentalLogs.get(itemName).add("대여: " + item.getId() + " (" + timestamp + ")");
 
+            System.out.println("대여 성공: " + itemName + " - " + item.getId());
             return item.getId();
         }
-        System.out.println("대여 실패: " + itemName + "의 재고가 부족합니다.");
+
+        System.out.println("대여 실패: " + itemName + "의 재고가 부족하거나 항목이 존재하지 않습니다.");
         return null; // 재고 부족
     }
 
@@ -63,20 +65,35 @@ public class RentManager {
                 String timestamp = dateFormat.format(new Date());
                 rentalLogs.get(itemName).add("반납: " + itemId + " (" + timestamp + ")");
 
+                System.out.println("반납 성공: " + itemId + " (" + itemName + ")");
                 return true;
+            } else {
+                System.out.println("반납 실패: " + itemId + " (" + itemName + ") - 이미 큐에 존재합니다.");
             }
+        } else {
+            System.out.println("반납 실패: 큐가 null입니다. (itemName: " + itemName + ")");
         }
-        return false; // 이미 큐에 있는 ID
+        return false; // 반납 실패
     }
 
     // 특정 물품의 현재 재고 수량 반환
     public int getItemCount(String itemName) {
-        return itemCounts.getOrDefault(itemName, 0);
+        int count = itemCounts.getOrDefault(itemName, 0);
+        System.out.println("현재 재고 확인 (" + itemName + "): " + count);
+        return count;
     }
 
     // 특정 물품의 대여 기록 반환
     public List<String> getRentalLogs(String itemName) {
-        return rentalLogs.getOrDefault(itemName, Collections.emptyList());
+        List<String> logs = rentalLogs.getOrDefault(itemName, Collections.emptyList());
+        System.out.println("대여/반납 기록 (" + itemName + "): " + logs);
+        return logs;
+    }
+
+    // 모든 물품의 재고 상태 반환 (디버깅 및 테스트용)
+    public Map<String, Integer> getAllItemCounts() {
+        System.out.println("전체 물품 재고 상태: " + itemCounts);
+        return new HashMap<>(itemCounts); // 복사본 반환
     }
 
     // 내부 클래스: 물품 정보
