@@ -28,51 +28,64 @@ public class MyPageActivity extends AppCompatActivity {
         LinearLayout itemContainer = findViewById(R.id.itemContainer);
         tvEmptyState = findViewById(R.id.tvEmptyState); // 빈 상태 텍스트뷰
 
-        // RentManager에서 대여 상태 가져오기
+        // 초기 데이터 로드
+        loadRentalData(itemContainer);
+
+        Button btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // MyPageActivity 재개 시 데이터 다시 로드
+        LinearLayout itemContainer = findViewById(R.id.itemContainer);
+        itemContainer.removeAllViews(); // 기존 UI 초기화
+        loadRentalData(itemContainer);  // 최신 데이터로 로드
+    }
+
+    private void loadRentalData(LinearLayout itemContainer) {
         List<String> itemNames = new ArrayList<>();
         List<String> rentalDates = new ArrayList<>();
 
-        // 모든 대여 기록 가져오기
+        // RentManager에서 대여 상태 가져오기
         List<String> logs = new ArrayList<>();
         for (String itemType : rentManager.getAllItemCounts().keySet()) {
             logs.addAll(rentManager.getRentalLogs(itemType)); // 모든 항목의 대여 로그 추가
         }
 
         for (String log : logs) {
-            if (log.startsWith("대여:")) {
+            if (log.startsWith("대여:")) { // 대여 기록만 필터링
                 String[] parts = log.split(" ");
                 String itemName = parts[1]; // 예: "가위-A"
                 String rentalDate = log.substring(log.indexOf("(") + 1, log.indexOf(")")); // 괄호 안의 날짜만 추출
 
-                if (!itemNames.contains(itemName)) {
+                if (!itemNames.contains(itemName)) { // 중복 방지
                     itemNames.add(itemName);
                     rentalDates.add(rentalDate); // 정확한 날짜 추가
                 }
             }
         }
 
-        // 데이터 확인 로그
         System.out.println("MyPageActivity로 전달된 데이터 확인:");
         System.out.println("itemNames: " + itemNames);
         System.out.println("rentalDates: " + rentalDates);
 
+        itemContainer.removeAllViews(); // 기존 UI 초기화
+
         if (itemNames.isEmpty()) {
-            System.out.println("데이터가 없거나 비어 있습니다.");
-            updateEmptyState(itemContainer); // 빈 상태 업데이트
-            return; // 데이터가 없으면 종료
+            updateEmptyState(itemContainer);
+            return;
         }
 
         for (int i = 0; i < itemNames.size(); i++) {
             String itemName = itemNames.get(i);
-            String rentalDate = rentalDates.get(i); // 각 항목에 맞는 대여 날짜 가져오기
-            System.out.println("Adding item to UI: " + itemName + ", 대여 날짜: " + rentalDate);
+            String rentalDate = rentalDates.get(i);
             addRentedItem(itemContainer, itemName, rentalDate, "1");
         }
 
-        Button btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
-
-        updateEmptyState(itemContainer); // 빈 상태 업데이트
+        updateEmptyState(itemContainer);
     }
 
     // 대여 항목 추가 메서드
@@ -91,18 +104,17 @@ public class MyPageActivity extends AppCompatActivity {
 
         Button btnReturn = itemView.findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(v -> {
-            // itemName을 안전하게 분리
             String[] itemParts = itemName.split("-");
             if (itemParts.length < 2) {
                 System.out.println("Error: Invalid itemName format: " + itemName);
                 return; // 잘못된 형식이면 처리 중단
             }
 
-            String itemType = itemParts[0]; // 예: "가위"
-            String itemId = itemParts[1];  // 예: "A"
+            String itemType = itemParts[0];
+            String itemId = itemParts[1];
 
             // RentManager를 통해 반납 처리
-            if (rentManager.returnItem(itemType, itemId)) { // 반납 성공 시
+            if (rentManager.returnItem(itemType, itemId)) {
                 System.out.println("반납 성공: " + itemName);
 
                 // MyPage UI에서 해당 항목 제거
@@ -114,11 +126,8 @@ public class MyPageActivity extends AppCompatActivity {
                 // SecondActivity로 반납 정보를 전달
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("returnedItem", itemName);
-                resultIntent.putExtra("itemType", itemType); // 예: "가위"
+                resultIntent.putExtra("itemType", itemType);
                 setResult(RESULT_OK, resultIntent);
-
-                // Activity 종료
-                finish();
             } else {
                 System.out.println("반납 실패: " + itemName);
             }

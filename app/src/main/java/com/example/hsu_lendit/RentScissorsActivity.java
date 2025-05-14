@@ -66,7 +66,6 @@ public class RentScissorsActivity extends AppCompatActivity {
             int availableQuantity = rentManager.getItemCount("가위");
 
             if (availableQuantity == 0) {
-                // 남은 수량이 0이면 OutOfStockActivity로 이동
                 Intent intent = new Intent(RentScissorsActivity.this, OutOfStockActivity.class);
                 startActivity(intent);
                 finish();
@@ -78,10 +77,16 @@ public class RentScissorsActivity extends AppCompatActivity {
                 return;
             }
 
-            // 정확한 대여 날짜 전달
+            // 정확한 대여 아이템 이름 가져오기
             Intent resultIntent = new Intent();
-            resultIntent.putExtra("itemName", "가위");
-            resultIntent.putExtra("rentalDate", rentalDate); // 정확한 대여 날짜 전달
+            for (int i = 0; i < rentalQuantity; i++) {
+                String rentedItemId = rentManager.rentItem("가위", rentalDate); // 대여 날짜 전달
+                if (rentedItemId != null) {
+                    resultIntent.putExtra("itemName", rentedItemId); // 예: "가위-B"
+                }
+            }
+
+            resultIntent.putExtra("rentalDate", rentalDate);
             resultIntent.putExtra("rentalQuantity", rentalQuantityStr);
             setResult(RESULT_OK, resultIntent);
             finish();

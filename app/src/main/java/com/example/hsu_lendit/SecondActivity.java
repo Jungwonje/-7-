@@ -121,9 +121,9 @@ public class SecondActivity extends AppCompatActivity {
 
                 if (returnedItem != null && itemType != null) {
                     handleReturnedItem(returnedItem, itemType);
-                    System.out.println("onActivityResult 후 rentedItems: " + rentedItems);
-                    System.out.println("onActivityResult 후 rentalDates: " + rentalDates);
-                    System.out.println("onActivityResult 후 rentalQuantities: " + rentalQuantities);
+
+                    // SecondActivity 데이터를 최신화
+                    updateAllRemainingQuantities(); // 남은 수량 업데이트
                 }
             }
         }
@@ -148,18 +148,17 @@ public class SecondActivity extends AppCompatActivity {
 
         int successfullyRented = 0;
 
-        // 대여 수량만큼 반복
         for (int i = 0; i < rentalQuantity; i++) {
             String rentedItemId = rentManager.rentItem(itemName, rentalDate); // 대여 날짜 전달
             if (rentedItemId != null) {
-                rentedItems.add(rentedItemId); // 대여된 물품 ID 추가
-                rentalDates.add(rentalDate);  // 대여 날짜 추가 (각 대여 항목과 정확히 매칭)
-                rentalQuantities.add("1");    // 대여 수량 1개씩 추가
+                rentedItems.add(rentedItemId); // 정확한 이름 추가 (예: "가위-B")
+                rentalDates.add(rentalDate);
+                rentalQuantities.add("1");
                 successfullyRented++;
                 System.out.println("대여 성공: " + rentedItemId + ", 대여 날짜: " + rentalDate);
             } else {
                 System.out.println("대여 실패: 재고 부족 (" + itemName + ")");
-                break; // 재고가 부족하면 루프 종료
+                break;
             }
         }
 

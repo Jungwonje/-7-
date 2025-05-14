@@ -54,9 +54,7 @@ public class RentManager {
 
                     // 대여 기록에 사용자가 입력한 대여 날짜 추가
                     String logEntry = "대여: " + item.getId() + " (" + rentalDate + ")";
-                    if (!rentalLogs.get(itemName).contains(logEntry)) {
-                        rentalLogs.get(itemName).add(logEntry);
-                    }
+                    rentalLogs.get(itemName).add(logEntry);
 
                     System.out.println("대여 성공: " + item.getId());
                     return item.getId(); // 대여된 물품 ID 반환
@@ -73,12 +71,21 @@ public class RentManager {
         if (queue != null) {
             RentalItem item = new RentalItem(itemId);
             if (!queue.contains(item)) { // 큐에 없는 ID만 반납 가능
-                queue.offer(item); // 큐에 다시 추가
-                itemCounts.put(itemName, itemCounts.get(itemName) + 1); // 재고 증가
+                queue.offer(item); // 큐에 추가
+                int updatedCount = itemCounts.get(itemName) + 1;
+                itemCounts.put(itemName, updatedCount); // 재고 증가
 
                 // 반납 기록 추가
                 String timestamp = dateFormat.format(new Date());
                 rentalLogs.get(itemName).add("반납: " + itemId + " (" + timestamp + ")");
+
+                // **대여 기록에서 반납된 아이템 제거**
+                boolean removed = rentalLogs.get(itemName).removeIf(log -> log.startsWith("대여: " + itemName + "-" + itemId));
+                if (removed) {
+                    System.out.println("대여 기록에서 제거됨: " + itemName + "-" + itemId);
+                } else {
+                    System.out.println("대여 기록에 아이템이 존재하지 않음: " + itemName + "-" + itemId);
+                }
 
                 System.out.println("반납 성공: " + itemId + " (" + itemName + ")");
                 return true;
