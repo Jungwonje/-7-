@@ -17,6 +17,7 @@ drawable tablet
 drawable umbrella
 drawable uu
 id btnBack
+id btnCancelReturn
 id btnComplete
 id btnConfirmRental
 id btnConfirmReturn
@@ -32,6 +33,8 @@ id btnRentScissors
 id btnRentTablet
 id btnRentUmbrella
 id btnReturn
+id etItemId
+id etItemType
 id etName
 id etPhone
 id etRentalDate
@@ -51,7 +54,7 @@ id tvRemainingTime
 id tvRentalDate
 id tvRentalQuantity
 id tvReturnDate
-id tvReturnMessage
+id tvReturnInstructions
 id tvScissorsRemaining
 id tvTotalTime
 id tvWelcome

@@ -3221,6 +3221,7 @@ int id bounceBoth 0x7f080062
 int id bounceEnd 0x7f080063
 int id bounceStart 0x7f080064
 int id btnBack 0x7f080065
+int id btnCancelReturn 0x7f080220
 int id btnComplete 0x7f080066
 int id btnConfirmRental 0x7f080067
 int id btnConfirmReturn 0x7f080068
@@ -3318,6 +3319,8 @@ int id endToStart 0x7f0800c3
 int id enterAlways 0x7f0800c4
 int id enterAlwaysCollapsed 0x7f0800c5
 int id escape 0x7f0800c6
+int id etItemId 0x7f080221
+int id etItemType 0x7f080222
 int id etName 0x7f0800c7
 int id etPhone 0x7f0800c8
 int id etRentalDate 0x7f0800c9
@@ -3634,7 +3637,7 @@ int id tvRemainingTime 0x7f0801fe
 int id tvRentalDate 0x7f0801ff
 int id tvRentalQuantity 0x7f080200
 int id tvReturnDate 0x7f080201
-int id tvReturnMessage 0x7f080202
+int id tvReturnInstructions 0x7f080223
 int id tvScissorsRemaining 0x7f08021e
 int id tvTotalTime 0x7f080203
 int id tvWelcome 0x7f080204

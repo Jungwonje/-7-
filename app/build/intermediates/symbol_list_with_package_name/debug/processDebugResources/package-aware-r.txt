@@ -3222,6 +3222,7 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id btnBack
+id btnCancelReturn
 id btnComplete
 id btnConfirmRental
 id btnConfirmReturn
@@ -3319,6 +3320,8 @@ id endToStart
 id enterAlways
 id enterAlwaysCollapsed
 id escape
+id etItemId
+id etItemType
 id etName
 id etPhone
 id etRentalDate
@@ -3635,7 +3638,7 @@ id tvRemainingTime
 id tvRentalDate
 id tvRentalQuantity
 id tvReturnDate
-id tvReturnMessage
+id tvReturnInstructions
 id tvScissorsRemaining
 id tvTotalTime
 id tvWelcome

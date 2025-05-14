@@ -3,27 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp"
-    android:background="#F5F5F5">
+    android:padding="16dp">
 
-    <!-- 반납 완료 메시지 -->
     <TextView
-        android:id="@+id/tvReturnMessage"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvReturnInstructions"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="반납이 완료되었습니다!"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/holo_green_dark"
-        android:layout_marginBottom="16dp" />
+        android:text="반납할 물품 정보를 입력하세요."
+        android:textSize="18sp"
+        android:paddingBottom="8dp" />
 
-    <!-- 확인 버튼 -->
+    <EditText
+        android:id="@+id/etItemType"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:hint="물품 종류 (예: 가위)"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etItemId"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:hint="고유 ID (예: A)"
+        android:inputType="text" />
+
     <Button
         android:id="@+id/btnConfirmReturn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:text="반납 완료" />
+
+    <Button
+        android:id="@+id/btnCancelReturn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="확인"
-        android:backgroundTint="@color/holo_blue_dark"
-        android:textColor="@android:color/white" />
+        android:layout_marginTop="16dp"
+        android:text="취소" />
 </LinearLayout>
