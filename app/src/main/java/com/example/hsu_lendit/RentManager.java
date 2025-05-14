@@ -23,7 +23,8 @@ public class RentManager {
 
     // 물품 추가 메서드
     private void addItem(String itemName, int count) {
-        PriorityQueue<RentalItem> queue = new PriorityQueue<>((a, b) -> Long.compare(a.getRentalTime(), b.getRentalTime()));
+        // 알파벳 순서대로 정렬하도록 우선순위 큐 생성
+        PriorityQueue<RentalItem> queue = new PriorityQueue<>((a, b) -> a.getId().compareTo(b.getId()));
         for (int i = 1; i <= count; i++) {
             queue.add(new RentalItem(itemName + "-" + (char) ('A' + i - 1))); // A, B, C, ...
         }
@@ -44,7 +45,7 @@ public class RentManager {
             String timestamp = dateFormat.format(new Date());
             rentalLogs.get(itemName).add("대여: " + item.getId() + " (" + timestamp + ")");
 
-            System.out.println("대여 성공: " + itemName + " - " + item.getId());
+            // 대여된 물품 ID 반환 (예: 가위-A)
             return item.getId();
         }
 
