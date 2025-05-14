@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class MyPageActivity extends AppCompatActivity {
@@ -22,31 +23,50 @@ public class MyPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
 
-        rentManager = new RentManager(); // RentManager 초기화
+        rentManager = RentManager.getInstance(); // RentManager 싱글톤 인스턴스 가져오기
 
         LinearLayout itemContainer = findViewById(R.id.itemContainer);
         tvEmptyState = findViewById(R.id.tvEmptyState); // 빈 상태 텍스트뷰
 
-        Intent intent = getIntent();
-        ArrayList<String> itemNames = intent.getStringArrayListExtra("itemNames");
-        ArrayList<String> rentalDates = intent.getStringArrayListExtra("rentalDates");
-        ArrayList<String> rentalQuantities = intent.getStringArrayListExtra("rentalQuantities");
+        // RentManager에서 대여 상태 가져오기
+        List<String> itemNames = new ArrayList<>();
+        List<String> rentalDates = new ArrayList<>();
+
+        // 모든 대여 기록 가져오기
+        List<String> logs = new ArrayList<>();
+        for (String itemType : rentManager.getAllItemCounts().keySet()) {
+            logs.addAll(rentManager.getRentalLogs(itemType)); // 모든 항목의 대여 로그 추가
+        }
+
+        for (String log : logs) {
+            if (log.startsWith("대여:")) {
+                String[] parts = log.split(" ");
+                String itemName = parts[1]; // 예: "가위-A"
+                String rentalDate = log.substring(log.indexOf("(") + 1, log.indexOf(")")); // 괄호 안의 날짜만 추출
+
+                if (!itemNames.contains(itemName)) {
+                    itemNames.add(itemName);
+                    rentalDates.add(rentalDate); // 정확한 날짜 추가
+                }
+            }
+        }
 
         // 데이터 확인 로그
         System.out.println("MyPageActivity로 전달된 데이터 확인:");
         System.out.println("itemNames: " + itemNames);
         System.out.println("rentalDates: " + rentalDates);
-        System.out.println("rentalQuantities: " + rentalQuantities);
 
-        if (itemNames == null || rentalDates == null || rentalQuantities == null || itemNames.isEmpty()) {
+        if (itemNames.isEmpty()) {
             System.out.println("데이터가 없거나 비어 있습니다.");
             updateEmptyState(itemContainer); // 빈 상태 업데이트
             return; // 데이터가 없으면 종료
         }
 
         for (int i = 0; i < itemNames.size(); i++) {
-            System.out.println("Adding item to UI: " + itemNames.get(i));
-            addRentedItem(itemContainer, itemNames.get(i), rentalDates.get(i), rentalQuantities.get(i));
+            String itemName = itemNames.get(i);
+            String rentalDate = rentalDates.get(i); // 각 항목에 맞는 대여 날짜 가져오기
+            System.out.println("Adding item to UI: " + itemName + ", 대여 날짜: " + rentalDate);
+            addRentedItem(itemContainer, itemName, rentalDate, "1");
         }
 
         Button btnBack = findViewById(R.id.btnBack);
@@ -111,7 +131,9 @@ public class MyPageActivity extends AppCompatActivity {
     private String calculateRemainingTime(String rentalDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         try {
-            Date rental = sdf.parse(rentalDate);
+            // 괄호 제거 및 날짜 파싱
+            String sanitizedDate = rentalDate.replace("(", "").replace(")", ""); // 괄호 제거
+            Date rental = sdf.parse(sanitizedDate); // 대여일자 파싱
             Date today = new Date();
             long diff = rental.getTime() + (7 * 24 * 60 * 60 * 1000) - today.getTime(); // 7일 대여 기간
             if (diff > 0) {

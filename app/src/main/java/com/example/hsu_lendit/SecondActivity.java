@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
-    private RentManager rentManager;
+    private RentManager rentManager; // 싱글톤 RentManager
     private ArrayList<String> rentedItems = new ArrayList<>();
     private ArrayList<String> rentalDates = new ArrayList<>();
     private ArrayList<String> rentalQuantities = new ArrayList<>();
@@ -19,7 +19,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        rentManager = new RentManager();
+        rentManager = RentManager.getInstance(); // 싱글톤 인스턴스 가져오기
 
         // SharedPreferences에서 사용자 데이터 가져오기
         SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
@@ -42,53 +42,51 @@ public class SecondActivity extends AppCompatActivity {
             myPageIntent.putStringArrayListExtra("itemNames", rentedItems);
             myPageIntent.putStringArrayListExtra("rentalDates", rentalDates);
             myPageIntent.putStringArrayListExtra("rentalQuantities", rentalQuantities);
-            startActivity(myPageIntent);
+            startActivityForResult(myPageIntent, 2); // requestCode 2로 변경
         });
 
-        setupRentalButtons();
+        updateRentalButtons();
     }
 
-    private void setupRentalButtons() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateRentalButtons(); // 버튼 상태 업데이트
+        updateAllRemainingQuantities(); // 남은 수량 업데이트
+    }
+
+    private void updateRentalButtons() {
         Button btnRentScissors = findViewById(R.id.btnRentScissors);
+
+        // 가위 대여 버튼 동작 설정
         btnRentScissors.setOnClickListener(v -> {
-            Intent intent = new Intent(SecondActivity.this, RentScissorsActivity.class);
+            int scissorsStock = rentManager.getItemCount("가위"); // 가위의 최신 남은 수량 확인
+
+            if (scissorsStock == 0) {
+                // 남은 수량이 0일 경우: OutOfStockActivity로 이동
+                Intent intent = new Intent(SecondActivity.this, OutOfStockActivity.class);
+                startActivity(intent);
+            } else {
+                // 남은 수량이 있을 경우: RentScissorsActivity로 이동
+                Intent intent = new Intent(SecondActivity.this, RentScissorsActivity.class);
+                startActivityForResult(intent, 1); // requestCode 1
+            }
+        });
+
+        // 다른 대여 버튼 설정
+        setButtonAction(R.id.btnRentLaptop, RentLaptopActivity.class);
+        setButtonAction(R.id.btnRentMouse, OutOfStockActivity.class);
+        setButtonAction(R.id.btnRentEarphone, RentEarphoneActivity.class);
+        setButtonAction(R.id.btnRentUmbrella, RentUmbrellaActivity.class);
+        setButtonAction(R.id.btnRentCharger, RentChargerActivity.class);
+        setButtonAction(R.id.btnRentTablet, RentTabletActivity.class);
+    }
+
+    private void setButtonAction(int buttonId, Class<?> activityClass) {
+        Button button = findViewById(buttonId);
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(SecondActivity.this, activityClass);
             startActivityForResult(intent, 1);
-        });
-
-        Button btnRentLabtop = findViewById(R.id.btnRentLaptop);
-        btnRentLabtop.setOnClickListener(v -> {
-            Intent intent = new Intent(SecondActivity.this, RentLaptopActivity.class);
-            startActivity(intent);
-        });
-
-        Button btnRentMouse = findViewById(R.id.btnRentMouse);
-        btnRentMouse.setOnClickListener(v -> {
-            Intent intent = new Intent(SecondActivity.this, OutOfStockActivity.class);
-            startActivity(intent);
-        });
-
-        Button btnRentEarphone = findViewById(R.id.btnRentEarphone);
-        btnRentEarphone.setOnClickListener(v -> {
-            Intent intent = new Intent(SecondActivity.this, RentEarphoneActivity.class);
-            startActivity(intent);
-        });
-
-        Button btnRentUmbrella = findViewById(R.id.btnRentUmbrella);
-        btnRentUmbrella.setOnClickListener(v -> {
-            Intent intent = new Intent(SecondActivity.this, RentUmbrellaActivity.class);
-            startActivity(intent);
-        });
-
-        Button btnRentCharger = findViewById(R.id.btnRentCharger);
-        btnRentCharger.setOnClickListener(v -> {
-            Intent intent = new Intent(SecondActivity.this, RentChargerActivity.class);
-            startActivity(intent);
-        });
-
-        Button btnRentTablet = findViewById(R.id.btnRentTablet);
-        btnRentTablet.setOnClickListener(v -> {
-            Intent intent = new Intent(SecondActivity.this, RentTabletActivity.class);
-            startActivity(intent);
         });
     }
 
@@ -97,35 +95,36 @@ public class SecondActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && data != null) {
-            String returnedItem = data.getStringExtra("returnedItem");
-            String itemType = data.getStringExtra("itemType");
+            if (requestCode == 1) { // 대여 처리
+                String itemName = data.getStringExtra("itemName");
+                String rentalDate = data.getStringExtra("rentalDate");
+                String rentalQuantityString = data.getStringExtra("rentalQuantity");
 
-            if (returnedItem != null && itemType != null) {
-                handleReturnedItem(returnedItem, itemType);
-                System.out.println("onActivityResult 후 rentedItems: " + rentedItems);
-                System.out.println("onActivityResult 후 rentalDates: " + rentalDates);
-                System.out.println("onActivityResult 후 rentalQuantities: " + rentalQuantities);
-                return;
-            }
+                System.out.println("onActivityResult 데이터 확인:");
+                System.out.println("itemName: " + itemName);
+                System.out.println("rentalDate: " + rentalDate);
+                System.out.println("rentalQuantity: " + rentalQuantityString);
 
-            String itemName = data.getStringExtra("itemName");
-            String rentalDate = data.getStringExtra("rentalDate");
-            String rentalQuantityString = data.getStringExtra("rentalQuantity");
+                int rentalQuantity = 0;
+                try {
+                    rentalQuantity = Integer.parseInt(rentalQuantityString);
+                } catch (NumberFormatException e) {
+                    System.out.println("rentalQuantity 변환 오류: " + e.getMessage());
+                }
 
-            System.out.println("onActivityResult 데이터 확인:");
-            System.out.println("itemName: " + itemName);
-            System.out.println("rentalDate: " + rentalDate);
-            System.out.println("rentalQuantity: " + rentalQuantityString);
+                if (itemName != null && rentalDate != null && rentalQuantity > 0) {
+                    handleRentedItems(itemName, rentalDate, rentalQuantity);
+                }
+            } else if (requestCode == 2) { // 반납 처리
+                String returnedItem = data.getStringExtra("returnedItem");
+                String itemType = data.getStringExtra("itemType");
 
-            int rentalQuantity = 0;
-            try {
-                rentalQuantity = Integer.parseInt(rentalQuantityString);
-            } catch (NumberFormatException e) {
-                System.out.println("rentalQuantity 변환 오류: " + e.getMessage());
-            }
-
-            if (itemName != null && rentalDate != null && rentalQuantity > 0) {
-                handleRentedItems(itemName, rentalDate, rentalQuantity);
+                if (returnedItem != null && itemType != null) {
+                    handleReturnedItem(returnedItem, itemType);
+                    System.out.println("onActivityResult 후 rentedItems: " + rentedItems);
+                    System.out.println("onActivityResult 후 rentalDates: " + rentalDates);
+                    System.out.println("onActivityResult 후 rentalQuantities: " + rentalQuantities);
+                }
             }
         }
     }
@@ -145,19 +144,27 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void handleRentedItems(String itemName, String rentalDate, int rentalQuantity) {
+        System.out.println("대여 처리 시작: itemName=" + itemName + ", rentalDate=" + rentalDate + ", rentalQuantity=" + rentalQuantity);
+
+        int successfullyRented = 0;
+
+        // 대여 수량만큼 반복
         for (int i = 0; i < rentalQuantity; i++) {
-            String rentedItemId = rentManager.rentItem(itemName);
+            String rentedItemId = rentManager.rentItem(itemName, rentalDate); // 대여 날짜 전달
             if (rentedItemId != null) {
-                rentedItems.add(rentedItemId);
-                rentalDates.add(rentalDate);
-                rentalQuantities.add("1");
-                System.out.println("대여 성공: " + rentedItemId);
+                rentedItems.add(rentedItemId); // 대여된 물품 ID 추가
+                rentalDates.add(rentalDate);  // 대여 날짜 추가 (각 대여 항목과 정확히 매칭)
+                rentalQuantities.add("1");    // 대여 수량 1개씩 추가
+                successfullyRented++;
+                System.out.println("대여 성공: " + rentedItemId + ", 대여 날짜: " + rentalDate);
             } else {
                 System.out.println("대여 실패: 재고 부족 (" + itemName + ")");
+                break; // 재고가 부족하면 루프 종료
             }
         }
 
-        updateRemainingQuantity(itemName);
+        System.out.println("총 대여 성공 수량: " + successfullyRented);
+        updateRemainingQuantity(itemName); // UI 업데이트
     }
 
     private void updateRemainingQuantity(String itemType) {
@@ -173,5 +180,15 @@ public class SecondActivity extends AppCompatActivity {
         }
 
         System.out.println("UI 업데이트 완료: " + itemType + " 남은 수량 = " + remainingCount);
+    }
+
+    private void updateAllRemainingQuantities() {
+        updateRemainingQuantity("가위");
+        updateRemainingQuantity("노트북");
+        updateRemainingQuantity("마우스");
+        updateRemainingQuantity("이어폰");
+        updateRemainingQuantity("우산");
+        updateRemainingQuantity("충전기");
+        updateRemainingQuantity("태블릿");
     }
 }

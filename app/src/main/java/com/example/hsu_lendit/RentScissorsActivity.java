@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class RentScissorsActivity extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class RentScissorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_scissors);
 
-        rentManager = new RentManager();
+        rentManager = RentManager.getInstance(); // 싱글톤 인스턴스 가져오기
 
         EditText etRentalDate = findViewById(R.id.etRentalDate);
         EditText etRentalQuantity = findViewById(R.id.etRentalQuantity);
@@ -29,9 +30,7 @@ public class RentScissorsActivity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.btnBack); // 뒤로가기 버튼 추가
 
         // 뒤로가기 버튼 클릭 이벤트
-        btnBack.setOnClickListener(v -> {
-            finish(); // 이전 화면으로 돌아감
-        });
+        btnBack.setOnClickListener(v -> finish());
 
         // 대여일자 입력 시 반납날짜 자동 계산
         etRentalDate.setOnFocusChangeListener((v, hasFocus) -> {
@@ -40,8 +39,9 @@ public class RentScissorsActivity extends AppCompatActivity {
                 if (!rentalDate.isEmpty()) {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                     try {
+                        Date parsedDate = sdf.parse(rentalDate); // 입력된 대여일자 파싱
                         Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(sdf.parse(rentalDate));
+                        calendar.setTime(parsedDate); // Calendar에 Date 설정
                         calendar.add(Calendar.DAY_OF_YEAR, 7); // 대여 기간 7일 추가
                         String returnDate = sdf.format(calendar.getTime());
                         tvReturnDate.setText("반납 날짜: " + returnDate); // 반납날짜 표시
@@ -65,19 +65,24 @@ public class RentScissorsActivity extends AppCompatActivity {
             int rentalQuantity = Integer.parseInt(rentalQuantityStr);
             int availableQuantity = rentManager.getItemCount("가위");
 
-            if (rentalQuantity > availableQuantity) {
-                Toast.makeText(this, "재고가 부족합니다.", Toast.LENGTH_SHORT).show();
+            if (availableQuantity == 0) {
+                // 남은 수량이 0이면 OutOfStockActivity로 이동
+                Intent intent = new Intent(RentScissorsActivity.this, OutOfStockActivity.class);
+                startActivity(intent);
+                finish();
                 return;
             }
 
-            for (int i = 0; i < rentalQuantity; i++) {
-                rentManager.rentItem("가위");
+            if (rentalQuantity > availableQuantity) {
+                Toast.makeText(this, "남은 수량보다 많은 갯수를 대여할 수는 없습니다.", Toast.LENGTH_SHORT).show();
+                return;
             }
 
+            // 정확한 대여 날짜 전달
             Intent resultIntent = new Intent();
             resultIntent.putExtra("itemName", "가위");
-            resultIntent.putExtra("rentalDate", rentalDate);
-            resultIntent.putExtra("rentalQuantity", rentalQuantityStr); // String으로 전달
+            resultIntent.putExtra("rentalDate", rentalDate); // 정확한 대여 날짜 전달
+            resultIntent.putExtra("rentalQuantity", rentalQuantityStr);
             setResult(RESULT_OK, resultIntent);
             finish();
         });

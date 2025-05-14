@@ -4,14 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RentManager {
+    private static RentManager instance; // 싱글톤 인스턴스
     private Map<String, PriorityQueue<RentalItem>> itemQueues = new HashMap<>(); // 물품별 우선순위 큐
     private Map<String, Integer> itemCounts = new HashMap<>(); // 물품별 재고 수량
     private Map<String, List<String>> rentalLogs = new HashMap<>(); // 대여 기록
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
-    // 생성자: 초기 물품과 수량 추가
-    public RentManager() {
+    // private 생성자: 외부에서 직접 생성 불가
+    private RentManager() {
         addItem("노트북", 3);
         addItem("우산", 4);
         addItem("충전기", 2);
@@ -21,9 +22,16 @@ public class RentManager {
         addItem("태블릿", 3);
     }
 
+    // 싱글톤 인스턴스 반환
+    public static synchronized RentManager getInstance() {
+        if (instance == null) {
+            instance = new RentManager();
+        }
+        return instance;
+    }
+
     // 물품 추가 메서드
     private void addItem(String itemName, int count) {
-        // 알파벳 순서대로 정렬하도록 우선순위 큐 생성
         PriorityQueue<RentalItem> queue = new PriorityQueue<>((a, b) -> a.getId().compareTo(b.getId()));
         for (int i = 1; i <= count; i++) {
             queue.add(new RentalItem(itemName + "-" + (char) ('A' + i - 1))); // A, B, C, ...
@@ -34,23 +42,29 @@ public class RentManager {
     }
 
     // 물품 대여 메서드
-    public String rentItem(String itemName) {
+    public String rentItem(String itemName, String rentalDate) {
         PriorityQueue<RentalItem> queue = itemQueues.get(itemName);
         if (queue != null && !queue.isEmpty()) {
             RentalItem item = queue.poll(); // 큐에서 물품 추출
-            itemCounts.put(itemName, itemCounts.get(itemName) - 1); // 재고 감소
-            item.setRentalTime(System.currentTimeMillis()); // 대여 시간 설정
+            if (item != null) {
+                int currentCount = itemCounts.get(itemName);
+                if (currentCount > 0) {
+                    itemCounts.put(itemName, currentCount - 1); // 재고 감소
+                    item.setRentalTime(System.currentTimeMillis()); // 대여 시간 설정
 
-            // 대여 기록 추가
-            String timestamp = dateFormat.format(new Date());
-            rentalLogs.get(itemName).add("대여: " + item.getId() + " (" + timestamp + ")");
+                    // 대여 기록에 사용자가 입력한 대여 날짜 추가
+                    String logEntry = "대여: " + item.getId() + " (" + rentalDate + ")";
+                    if (!rentalLogs.get(itemName).contains(logEntry)) {
+                        rentalLogs.get(itemName).add(logEntry);
+                    }
 
-            // 대여된 물품 ID 반환 (예: 가위-A)
-            return item.getId();
+                    System.out.println("대여 성공: " + item.getId());
+                    return item.getId(); // 대여된 물품 ID 반환
+                }
+            }
         }
-
         System.out.println("대여 실패: " + itemName + "의 재고가 부족하거나 항목이 존재하지 않습니다.");
-        return null; // 재고 부족
+        return null;
     }
 
     // 물품 반납 메서드

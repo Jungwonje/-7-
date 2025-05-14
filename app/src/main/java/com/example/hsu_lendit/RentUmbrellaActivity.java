@@ -20,7 +20,7 @@ public class RentUmbrellaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_umbrella);
 
-        rentManager = new RentManager();
+        rentManager = RentManager.getInstance(); // 싱글톤 인스턴스 가져오기
 
         EditText etRentalDate = findViewById(R.id.etRentalDate);
         EditText etRentalQuantity = findViewById(R.id.etRentalQuantity);
@@ -29,10 +29,7 @@ public class RentUmbrellaActivity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.btnBack); // 뒤로가기 버튼 추가
 
         // 뒤로가기 버튼 클릭 이벤트
-        btnBack.setOnClickListener(v -> {
-            // 현재 액티비티 종료 (이전 화면으로 돌아감)
-            finish();
-        });
+        btnBack.setOnClickListener(v -> finish());
 
         // 대여일자 입력 시 반납날짜 자동 계산
         etRentalDate.setOnFocusChangeListener((v, hasFocus) -> {
@@ -72,7 +69,7 @@ public class RentUmbrellaActivity extends AppCompatActivity {
             }
 
             for (int i = 0; i < rentalQuantity; i++) {
-                rentManager.rentItem("우산");
+                rentManager.rentItem("우산", rentalDate);
             }
 
             Intent resultIntent = new Intent();

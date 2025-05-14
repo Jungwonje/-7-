@@ -20,7 +20,7 @@ public class RentChargerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_charger);
 
-        rentManager = new RentManager();
+        rentManager = RentManager.getInstance(); // 싱글톤 인스턴스 가져오기
 
         EditText etRentalDate = findViewById(R.id.etRentalDate);
         EditText etRentalQuantity = findViewById(R.id.etRentalQuantity);
@@ -72,7 +72,7 @@ public class RentChargerActivity extends AppCompatActivity {
             }
 
             for (int i = 0; i < rentalQuantity; i++) {
-                rentManager.rentItem("충전기");
+                rentManager.rentItem("충전기", rentalDate); // 대여 날짜 추가
             }
 
             Intent resultIntent = new Intent();
