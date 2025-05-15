@@ -65,6 +65,7 @@ public class SecondActivity extends AppCompatActivity {
             if (scissorsStock == 0) {
                 // 남은 수량이 0일 경우: OutOfStockActivity로 이동
                 Intent intent = new Intent(SecondActivity.this, OutOfStockActivity.class);
+                intent.putExtra("itemName", "가위"); // 물품 이름 전달
                 startActivity(intent);
             } else {
                 // 남은 수량이 있을 경우: RentScissorsActivity로 이동
@@ -74,19 +75,28 @@ public class SecondActivity extends AppCompatActivity {
         });
 
         // 다른 대여 버튼 설정
-        setButtonAction(R.id.btnRentLaptop, RentLaptopActivity.class);
-        setButtonAction(R.id.btnRentMouse, OutOfStockActivity.class);
-        setButtonAction(R.id.btnRentEarphone, RentEarphoneActivity.class);
-        setButtonAction(R.id.btnRentUmbrella, RentUmbrellaActivity.class);
-        setButtonAction(R.id.btnRentCharger, RentChargerActivity.class);
-        setButtonAction(R.id.btnRentTablet, RentTabletActivity.class);
+        setButtonAction(R.id.btnRentLaptop, "노트북", RentLaptopActivity.class);
+        setButtonAction(R.id.btnRentMouse, "마우스", OutOfStockActivity.class);
+        setButtonAction(R.id.btnRentEarphone, "이어폰", RentEarphoneActivity.class);
+        setButtonAction(R.id.btnRentUmbrella, "우산", RentUmbrellaActivity.class);
+        setButtonAction(R.id.btnRentCharger, "충전기", RentChargerActivity.class);
+        setButtonAction(R.id.btnRentTablet, "태블릿", RentTabletActivity.class);
     }
 
-    private void setButtonAction(int buttonId, Class<?> activityClass) {
+    private void setButtonAction(int buttonId, String itemName, Class<?> activityClass) {
         Button button = findViewById(buttonId);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(SecondActivity.this, activityClass);
-            startActivityForResult(intent, 1);
+            int stock = rentManager.getItemCount(itemName);
+            if (stock == 0) {
+                // 재고가 없으면 OutOfStockActivity로 이동
+                Intent intent = new Intent(SecondActivity.this, OutOfStockActivity.class);
+                intent.putExtra("itemName", itemName); // 물품 이름 전달
+                startActivity(intent);
+            } else {
+                // 재고가 있으면 대여 화면으로 이동
+                Intent intent = new Intent(SecondActivity.this, activityClass);
+                startActivityForResult(intent, 1);
+            }
         });
     }
 

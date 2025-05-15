@@ -3378,6 +3378,7 @@ id inward
 id italic
 id itemContainer
 id item_touch_helper_previous_elevation
+id ivItemImage
 id ivLogo
 id jumpToEnd
 id jumpToStart
@@ -3634,6 +3635,7 @@ id tvEmptyState
 id tvItemId
 id tvItemName
 id tvMyPage
+id tvOutOfStockMessage
 id tvRemainingTime
 id tvRentalDate
 id tvRentalQuantity

@@ -41,6 +41,7 @@ id etRentalDate
 id etRentalQuantity
 id etStudentId
 id itemContainer
+id ivItemImage
 id ivLogo
 id logo
 id main
@@ -50,6 +51,7 @@ id tvEmptyState
 id tvItemId
 id tvItemName
 id tvMyPage
+id tvOutOfStockMessage
 id tvRemainingTime
 id tvRentalDate
 id tvRentalQuantity

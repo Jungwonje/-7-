@@ -28,10 +28,6 @@
         "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_scissors.xml.flat",
-        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_scissors.xml"
-    },
-    {
         "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_item_rented.xml.flat",
         "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\item_rented.xml"
     },
@@ -126,6 +122,10 @@
     {
         "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_umbrella.png.flat",
         "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\umbrella.png"
+    },
+    {
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_outofstock.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_outofstock.xml"
     },
     {
         "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-mdpi_ic_launcher.webp.flat",
