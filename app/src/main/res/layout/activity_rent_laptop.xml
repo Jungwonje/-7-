@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="예: 2025-05-11"
-                android:inputType="date"
+                android:inputType="textVisiblePassword"
                 android:textSize="20sp"
                 android:textColor="#000000" />
         </LinearLayout>

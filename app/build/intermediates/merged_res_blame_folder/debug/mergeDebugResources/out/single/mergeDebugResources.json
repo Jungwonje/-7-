@@ -1,170 +1,166 @@
 [
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_uu.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\uu.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_scissors.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/scissors.png"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_earphone.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_earphone.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/xml_backup_rules.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/xml/backup_rules.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_laptop.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\laptop.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_mouse.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_mouse.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_outofstock.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_outofstock.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_earphone.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\earphone.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_mouse.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/mouse.png"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_main.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_item_rented.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\item_rented.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_scissors.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_scissors.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_mouse.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\mouse.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_charger.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_charger.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_second.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_second.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_charger.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_charger.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_uu.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/uu.png"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_background_hansung.jpg.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\background_hansung.jpg"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_tablet.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_tablet.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_scissors.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_scissors.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_hansung_logo_transparent.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\hansung_logo_transparent.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_earphone.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_earphone.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_item.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_item.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_item.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_item.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_umbrella.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_umbrella.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_mouse.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_mouse.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_my_page.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_my_page.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_my_page.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_my_page.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_laptop.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_laptop.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\xml\\data_extraction_rules.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_laptop.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/laptop.png"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_umbrella.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_umbrella.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\ic_launcher_foreground.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_rent_laptop.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_rent_laptop.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_main.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-xxhdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_tablet.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\tablet.png"
-    },
-    {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_return_item.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_return_item.xml"
-    },
-    {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\ic_launcher_background.xml"
-    },
-    {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_umbrella.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\umbrella.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_charger.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/charger.png"
     },
     {
         "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_outofstock.xml.flat",
         "source": "com.example.hsu_lendit.app-main-34:/layout/activity_outofstock.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\xml_backup_rules.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\xml\\backup_rules.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_return_item.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_return_item.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\layout_activity_rent_tablet.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\layout\\activity_rent_tablet.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_earphone.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/earphone.png"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_scissors.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\scissors.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_charger.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\charger.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_tablet.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/tablet.png"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_item_rented.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/item_rented.xml"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-xhdpi\\ic_launcher.webp"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\drawable_hansung_logo.png.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\drawable\\hansung_logo.png"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_umbrella.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/umbrella.png"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-debug-32:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\study\\.gradle\\daemon\\8.10.2\\com.example.hsu_lendit.app-main-34:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_background_hansung.jpg.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/background_hansung.jpg"
+    },
+    {
+        "merged": "com.example.hsu_lendit.app-debug-32:/layout_activity_second.xml.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/layout/activity_second.xml"
+    },
+    {
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_hansung_logo.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/hansung_logo.png"
+    },
+    {
+        "merged": "com.example.hsu_lendit.app-debug-32:/drawable_hansung_logo_transparent.png.flat",
+        "source": "com.example.hsu_lendit.app-main-34:/drawable/hansung_logo_transparent.png"
     }
 ]
