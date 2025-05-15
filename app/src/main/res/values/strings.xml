@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HSU LendIt</string>
+    <string name="app_title">한성대학교 물품대여 서비스</string>
+    <string name="hint_student_id">학번</string>
+    <string name="hint_name">이름</string>
+    <string name="hint_phone">전화번호</string>
+    <string name="btn_next">다음</string>
+    <string name="logo_description">한성대학교 마크</string>
+</resources>

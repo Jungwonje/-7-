@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <!-- 상단 바 (뒤로가기, 마이페이지, 로고) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp"
+        android:weightSum="3">
+
+        <!-- 뒤로가기 버튼 -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="←"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="#000000"
+            android:gravity="start" />
+
+        <!-- 마이페이지 텍스트 -->
+        <TextView
+            android:id="@+id/tvMyPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="마이페이지"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="#000000" />
+
+        <!-- 로고 이미지 -->
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/hansung_logo"
+            android:scaleType="fitEnd"
+            android:contentDescription="logo" />
+    </LinearLayout>
+
+    <!-- 대여한 물품 정보를 동적으로 추가할 컨테이너 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="대여한 물품 목록이 표시됩니다.">
+
+        <LinearLayout
+            android:id="@+id/itemContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 빈 상태 텍스트 -->
+            <TextView
+                android:id="@+id/tvEmptyState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대여한 물품이 없습니다"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:textColor="#555555" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 목록 보기 버튼 -->
+    <Button
+        android:id="@+id/btnList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:text="목록 보기"
+        android:textSize="25sp"
+        android:backgroundTint="#03A9F4"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
